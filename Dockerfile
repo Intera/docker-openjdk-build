@@ -1,10 +1,10 @@
 FROM centos:7
 
-ARG OPENJDK_BUILD_TAG="jdk8u312-ga"
+ARG OPENJDK_BUILD_TAG="jdk-11.0.12-ga"
 
-RUN yum install -y java-1.8.0-openjdk-devel
+RUN yum install -y java-11-openjdk-devel
 
-RUN yum-builddep -y java-1.8.0-openjdk-devel
+RUN yum-builddep -y java-11-openjdk-devel
 
 RUN yum groupinstall -y 'Development Tools'
 
@@ -14,13 +14,13 @@ RUN yum install -y mercurial which
 
 WORKDIR /opt
 
-RUN hg clone http://hg.openjdk.java.net/jdk8u/jdk8u jdk8u
+RUN hg clone http://hg.openjdk.java.net/jdk-updates/jdk11u jdk11u
 
-WORKDIR /opt/jdk8u
+WORKDIR /opt/jdk11u
 
 RUN hg checkout $OPENJDK_BUILD_TAG
 
-RUN bash get_source.sh
+RUN hg pull
 
 RUN bash ./configure  --with-extra-cxxflags="-Wno-error" --with-extra-cflags="-Wno-error"
 

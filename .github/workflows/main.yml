@@ -43,4 +43,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: intera/openjdk-jdk8u-build:${{ env.DOCKER_TAG }}
+          tags: intera/openjdk-build:${{ env.DOCKER_TAG }}
