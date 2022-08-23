@@ -2,13 +2,11 @@ FROM centos:7
 
 ARG OPENJDK_BUILD_TAG="jdk-17.0.5+3"
 
-RUN yum install -y java-1-openjdk-devel
+RUN yum install -y java-17-openjdk-devel
 
-RUN yum-builddep -y java-11-openjdk-devel
+RUN yum-builddep -y java-17-openjdk-devel
 
 RUN yum groupinstall -y 'Development Tools'
-
-COPY mercurial.repo /etc/yum.repos.d/mercurial.repo
 
 RUN yum install -y git which
 
