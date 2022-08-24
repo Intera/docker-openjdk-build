@@ -1,10 +1,14 @@
-FROM centos:7
+FROM rockylinux:8
 
 ARG OPENJDK_BUILD_TAG="jdk-17.0.5+3"
 
+# We install java-11 dependencies because java-17 is not available.
+
 RUN yum install -y java-17-openjdk-devel
 
-RUN yum-builddep -y java-17-openjdk-devel
+RUN yum install -y yum-utils
+
+RUN yum-builddep --enablerepo=powertools -y java-17-openjdk
 
 RUN yum groupinstall -y 'Development Tools'
 
