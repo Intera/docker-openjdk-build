@@ -30,11 +30,9 @@ RUN yum install -y alsa-lib-devel autoconf cups-devel file fontconfig-devel unzi
 
 RUN yum install -y libXtst-devel libXt-devel libXrender-devel libXrandr-devel libXi-devel
 
-RUN source /opt/rh/devtoolset-9/enable
+RUN scl enable devtoolset-9 "bash ./configure"
 
-RUN bash ./configure
-
-RUN make jdk-image
+RUN scl enable devtoolset-9 "make jdk-image"
 
 RUN ./build/*/images/jdk/bin/java -version
 
